@@ -11,23 +11,23 @@
  ```apply plugin: 'android-aspectjx'```
 
  3、在application中初始化(@InScheduleInit)：
- ```
-    @InScheduleInit
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
+ ```java
+@InScheduleInit
+@Override
+public void onCreate() {
+    super.onCreate();
+}
  ```
 4、在需要通过切换线程的方法上添加注解（@InSchedule(InScheduleType.TYPE_IO)或@InSchedule(InScheduleType.TYPE_MAIN)）
-```
+```java
 @InSchedule(InScheduleType.TYPE_IO)
-    private void testRunIo() {
-        Log.d(TAG, "testRunIo TID: " + android.os.Process.myTid());
-        testRunMain();
-    }
+private void testRunIo() {
+    Log.d(TAG, "testRunIo TID: " + android.os.Process.myTid());
+    testRunMain();
+}
 
-    @InSchedule(InScheduleType.TYPE_MAIN)
-    private void testRunMain() {
-        Log.d(TAG, "testRunMain TID: " + android.os.Process.myTid());
-    }
+@InSchedule(InScheduleType.TYPE_MAIN)
+private void testRunMain() {
+    Log.d(TAG, "testRunMain TID: " + android.os.Process.myTid());
+}
 ```
